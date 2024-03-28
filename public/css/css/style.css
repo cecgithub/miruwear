@@ -1,0 +1,32 @@
+/* Nav Bar */
+.ma-classe {
+    transition: background-color 0.5s ease; /* Transition sur 0.5 seconde avec un effet "ease" */
+}
+
+.container_Nav {
+    display: flex;
+    justify-content: space-between;
+    height: 4em;
+    align-items: center;
+    position: fixed;
+    background-color: transparent;
+    width: 100%;
+}
+
+.container_btn_Nav {
+    display:flex;
+    width: 28%;
+    justify-content: space-evenly;
+}
+
+.a_Nav {
+    text-decoration:none;
+    color:white;
+    font-size: 1.2em;
+}
+
+.Test {
+    background-image: url('/public/img/Cecilia.png');
+    background-size: cover;
+    background-position: center center;
+}
