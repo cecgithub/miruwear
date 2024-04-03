@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des couleurs
+{% endblock %}
+
+{% block body %}
+
+	<div class="example-wrapper">
+		<div class="container">
+			<h1>Couleur ! ✅</h1>
+
+			{{ form_start(form) }}
+			{{ form_row(form.name) }}
+			<button type="submit" class="btn btn-dark my-2 p-2">Valider</button>
+			{{ form_end(form) }}
+
+
+			<div>
+				<!-- On verifie que la longueur du tableau de colors soit suppérieur à 0  -->
+				{% if colors | length > 0 %}
+
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">id</th>
+								<th scope="col">Nom de la Couleur</th>
+								<th scope="col">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for color in colors %}
+								<tr>
+									<th scope="row">{{ color.id}}</th>
+									<td>{{ color.name }}</td>
+									<td>
+										<a href="{{ url('app_color_update', {'id' : color.id})}}" class="btn btn-light">Modifier</a>
+										<a href="{{ url('app_color_delete', {'id' : color.id})}}" class="btn btn-danger" onclick="return confirm('Etes vous sur de supprimer ?')">Supprimer</a>
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				{% else %}
+					<p>Aucune couleur pour l'instant</p>
+				{% endif %}
+			</div>
+
+		</div>
+	</div>
+{% endblock %}

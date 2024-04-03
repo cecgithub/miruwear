@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des tailles
+{% endblock %}
+
+{% block body %}
+
+	<div class="example-wrapper">
+		<div class="container">
+			<h1>Taille! ✅</h1>
+
+			{{ form_start(form) }}
+			{{ form_row(form.name) }}
+			<button type="submit" class="btn btn-dark my-2 p-2">Valider</button>
+			{{ form_end(form) }}
+
+
+			<div>
+				<!-- On verifie que la longueur du tableau de sizes soit suppérieur à 0  -->
+				{% if sizes | length > 0 %}
+
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">id</th>
+								<th scope="col">Nom de la Couleur</th>
+								<th scope="col">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for size in sizes %}
+								<tr>
+									<th scope="row">{{ size.id}}</th>
+									<td>{{ size.name }}</td>
+									<td>
+										<a href="{{ url('app_size_update', {'id' : size.id})}}" class="btn btn-light">Modifier</a>
+										<a href="{{ url('app_size_delete', {'id' : size.id})}}" class="btn btn-danger" onclick="return confirm('Etes vous sur de supprimer ?')">Supprimer</a>
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				{% else %}
+					<p>Aucune taille pour l'instant</p>
+				{% endif %}
+			</div>
+
+		</div>
+	</div>
+{% endblock %}
