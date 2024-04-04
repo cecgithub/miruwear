@@ -12,8 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[IsGranted('ROLE_ADMIN')]
-#[Route('/admin/category')]
+#[IsGranted('ROLE_ADMIN')] // protection des routes : seul les administrateurs auront accès à cette route
+#[Route('admin/category')]
 class CategoryController extends AbstractController
 {
     #[Route('/', name: 'app_category_index', methods: ['GET'])]
@@ -44,6 +44,14 @@ class CategoryController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}', name: 'app_category_show', methods: ['GET'])]
+    public function show(Category $category): Response
+    {
+        return $this->render('category/show.html.twig', [
+            'category' => $category,
+        ]);
+    }
+
     #[Route('/{id}/edit', name: 'app_category_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Category $category, EntityManagerInterface $entityManager): Response
     {
@@ -70,6 +78,6 @@ class CategoryController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_category_index');
+        return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
     }
 }

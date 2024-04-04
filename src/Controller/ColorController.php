@@ -10,10 +10,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_ADMIN')] 
+#[Route('/admin/color')]
 class ColorController extends AbstractController
 {
-    #[Route('/color', name: 'app_color')] // insert, ajoute la couleur
+    #[Route('/', name: 'app_color')] // insert, ajoute la couleur
     #[Route('/color/{id}', name: 'app_color_update')] // update, on modifie la couleur par son id
     public function index(ColorRepository $repository, EntityManagerInterface $manager, Request $request, int $id=null): Response
     {

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Collections !{% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+    <h1> Collections! ✅</h1>
+
+        {% for product in products %}
+<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="{{product.title}}">
+  <div class="card-body">
+    <h5 class="card-title">{{product.title}}</h5>
+    <h5 class="card-title">{{product.price}}€</h5>
+    <a href="#" class="btn btn-dark"><i class="fa-solid fa-cart-plus"></i> Mettre dans le panier</a>
+    <a href="{{ path('product_display', {'id': product.id}) }}" class="btn btn-light">Voir</a>
+  </div>
+</div>
+
+        {% else %}
+                <p class='fs-2'>Aucune collection pour l'instant</p>
+
+        {% endfor %}
+
+</div>
+{% endblock %}

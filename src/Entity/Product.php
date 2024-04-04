@@ -151,22 +151,22 @@ class Product
         return $this->media;
     }
 
-    public function addMedium(Media $medium): static
+    public function addMedia(Media $media): static
     {
-        if (!$this->media->contains($medium)) {
-            $this->media->add($medium);
-            $medium->setProduct($this);
+        if (!$this->media->contains($media)) {
+            $this->media->add($media);
+            $media->setProduct($this);
         }
 
         return $this;
     }
 
-    public function removeMedium(Media $medium): static
+    public function removeMedia(Media $media): static
     {
-        if ($this->media->removeElement($medium)) {
+        if ($this->media->removeElement($media)) {
             // set the owning side to null (unless already changed)
-            if ($medium->getProduct() === $this) {
-                $medium->setProduct(null);
+            if ($media->getProduct() === $this) {
+                $media->setProduct(null);
             }
         }
 

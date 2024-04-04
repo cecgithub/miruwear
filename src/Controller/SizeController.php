@@ -13,10 +13,10 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[IsGranted('ROLE_ADMIN')] // protection des routes : seul les administrateurs auront accès à cette route
-#[Route('/admin')] // on ajoute une route principale pour garantir l'accès à l'utilisateur
+#[Route('/admin/size')] // on ajoute une route principale pour garantir l'accès à l'utilisateur
 class SizeController extends AbstractController
 {
-    #[Route('/size', name: 'app_size')]
+    #[Route('/', name: 'app_size')]
     #[Route('/size/{id}', name: 'app_size_update')]
     public function index(SizeRepository $repository, EntityManagerInterface $manager, Request $request, int $id=null): Response
     {
