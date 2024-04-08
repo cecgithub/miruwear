@@ -3,51 +3,37 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <!-- Carrousel -->
-<div class="container-fluid" style="padding: 0;">
-    <div id="carouselExampleControls" class="carousel slide mt-6" data-bs-ride="carousel" style="width: 100%;">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="{{ asset('img/background-diapo-1.jpg') }}" class="d-block w-100" alt="Slide 1" style="object-fit: cover;">
+<!-- Hero Section with Animated Background -->
+<section class="hero">
+  <div class="hero-overlay"></div> <!-- Dark overlay -->
+  <div class="hero-content">
+    <h2 class="display-3 fw-bold mb-3">MiruWear</h2>
+    <p class="lead mb-5">Explorez notre boutique en ligne dès maintenant pour trouver des idées cadeaux uniques avec nos t-shirts colorés et personnalisés !</p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+    <a href="/product" class="btn bsb-btn-xl btn-light gap-3">Shop now!</a>
+    <a href="{{ path('app_register') }}" class="btn bsb-btn-xl btn-outline-light">S'inscrire</a>
+    </div>
+  </div>
+</section>
 
-            </div>
-            <div class="carousel-item">
-              <img src="{{ asset('img/background-diapo-2.jpg') }}" class="d-block w-100" alt="Slide 1" style="object-fit: cover;">
-            </div>
-            <div class="carousel-item">
-              <img src="{{ asset('img/background-diapo-3.jpg') }}" class="d-block w-100" alt="Slide 1" style="object-fit: cover;">
+
+<!-- Section Collections -->
+<section id="collections" class="py-5 d-flex justify-content-center align-items-center" style="background-image: url('img/list_deco01.png'); background-size: 100%;">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h1>Collections</h1>
+                <p>Découvrez nos collections de t-shirts pour hommes et femmes, offrant des styles colorés, fantaisistes et mignons, parfaits pour tous les goûts. Optez pour nos t-shirts personnalisés !</p>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
-</div>
-<!-- Carrousel -->
-    <div class="container-fluid" style="padding: 0;">
-        <!-- Section Collections -->
-        <section id="collections" class="py-5 d-flex justify-content-center align-items-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col text-center">
-                        <h1>Collections</h1>
-                        <p>Découvrez nos collections de t-shirts pour hommes et femmes, offrant des styles colorés, fantaisistes et mignons, parfaits pour tous les goûts. Optez pour nos t-shirts personnalisés !</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- /Section Collections -->
-    </div>
+</section>
 
-<!-- Carrousel collection qui renvoie à la page collection -->
 
-<div class="container text-center my-3">
-    <h2 class="font-weight-light">Idée cadeaux personnalisés!</h2>
+
+
+<div class="container text-center my-3 my-lg-5">
+    <h2 class="font-weight-light my-lg-5 ">Idée cadeaux T-shirts</h2>
     <div class="row mx-auto my-auto justify-content-center">
         <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner" role="listbox">
@@ -55,9 +41,8 @@
                     <div class="col-md-3">
                         <div class="card">
                             <div class="card-img">
-                                <img src="//via.placeholder.com/500x400/31f?text=1" class="img-fluid">
+                                <img src="{{ asset('img/cadeau-1.png') }}" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">Slide 1</div>
                         </div>
                     </div>
                 </div>
@@ -65,9 +50,8 @@
                     <div class="col-md-3">
                         <div class="card">
                             <div class="card-img">
-                                <img src="//via.placeholder.com/500x400/e66?text=2" class="img-fluid">
+                                <img src="{{ asset('/img/cadeau-2.png') }}" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">Slide 2</div>
                         </div>
                     </div>
                 </div>
@@ -75,9 +59,8 @@
                     <div class="col-md-3">
                         <div class="card">
                             <div class="card-img">
-                                <img src="//via.placeholder.com/500x400/7d2?text=3" class="img-fluid">
+                                <img src="{{ asset('/img/cadeau-3.png') }}" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">Slide 3</div>
                         </div>
                     </div>
                 </div>
@@ -85,9 +68,8 @@
                     <div class="col-md-3">
                         <div class="card">
                             <div class="card-img">
-                                <img src="//via.placeholder.com/500x400?text=4" class="img-fluid">
+                                <img src="{{ asset('/img/cadeau-4.png') }}" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">Slide 4</div>
                         </div>
                     </div>
                 </div>
@@ -95,9 +77,8 @@
                     <div class="col-md-3">
                         <div class="card">
                             <div class="card-img">
-                                <img src="//via.placeholder.com/500x400/aba?text=5" class="img-fluid">
+                                <img src="{{ asset('/img/cadeau-5.png') }}" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">Slide 5</div>
                         </div>
                     </div>
                 </div>
@@ -105,9 +86,8 @@
                     <div class="col-md-3">
                         <div class="card">
                             <div class="card-img">
-                                <img src="{{ asset('public/img/hommes-tetedemort.png') }}"  class="img-fluid">
+                                <img src="{{ asset('/img/cadeau-6.png') }}" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">Slide 6</div>
                         </div>
                     </div>
                 </div>
@@ -120,9 +100,43 @@
             </a>
         </div>
     </div>
-    <a href="{{ path('product') }}" class="btn btn-dark" role="button">Voir nos collections</a>
-
+    <h5 class="mt-2 fw-light my-lg-5">
+        <a href="/product" class="btn btn-dark btn-degrade text-dark" role="button">Voir nos collections</a>
+    </h5>
+</div>
 </div>
 
-<script></script>
+
+<script>
+let items = document.querySelectorAll('.carousel .carousel-item')
+
+items.forEach((el) => {
+    const minPerSlide = 4
+    let next = el.nextElementSibling
+    for (var i=1; i<minPerSlide; i++) {
+        if (!next) {
+            // wrap carousel by using first child
+        	next = items[0]
+      	}
+        let cloneChild = next.cloneNode(true)
+        el.appendChild(cloneChild.children[0])
+        next = next.nextElementSibling
+    }
+})
+
+    // Define an array of image URLs
+    const images = ['img/background-hero-1.jpg', 'img/background-hero-2.jpg', 'img/background-hero-3.jpg'];
+    let currentIndex = 0;
+
+    // Function to change the background image
+    function changeBackground() {
+      const hero = document.querySelector('.hero');
+      hero.style.backgroundImage = `url(${images[currentIndex]})`;
+      currentIndex = (currentIndex + 1) % images.length;
+    }
+
+    // Change background every 5 seconds
+    setInterval(changeBackground, 8000);
+
+</script>
 {% endblock %}

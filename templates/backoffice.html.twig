@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %} Wanted Admin | {% endblock %}</title>
+
+
+    {% block stylesheet %}
+        <!-- Custom fonts for this template-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"
+            integrity="sha512-rt/SrQ4UNIaGfDyEXZtNcyWvQeOq0QLygHluFQcSjaGB04IxWhal71tKuzP6K8eYXYB6vJV4pHkXcmFGGQ1/0w=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css" integrity="sha512-KulI0psuJQK8UMpOeiMLDXJtGOZEBm8RZNTyBBHIWqoXoPMFcw+L5AEo0YMpsW8BfiuWrdD1rH6GWGgQBF59Lg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet">
+    {% endblock %}
+
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="logo_nav">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path('app_home')}}">
+        MiruWear </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main_nav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+               
+            </ul>
+            <ul class="navbar-nav ms-auto" id="menu_nav">
+             <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_product_new')}}" style="color: white;">Gestions des produits</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_category_index')}}" style="color: white;">Gestion des catégories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_size')}}" style="color: white;">Gestion des tailles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_color')}}" style="color: white;">Gestion de couleurs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_model_new')}}" style="color: white;">Gestion des modèles</a>
+                </li>
+
+                {% if not app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_register')}}" style="color: white;">S'inscrire</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('app_login')}}" style="color: white;">Se connecter</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_logout')}}" style="color: white;">Se déconnecter</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+{% block body %}
+{% endblock %}
+
+
+</body>
+
+
+</html>
