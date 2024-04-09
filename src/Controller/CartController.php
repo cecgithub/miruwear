@@ -39,4 +39,11 @@ class CartController extends AbstractController
         $this->cartService->removeFromCart($product);
         return $this->redirectToRoute('app_cart_show');
     }
+
+    #[Route('/destroy/cart', name: 'destroy')]
+    public function destroyCart(): Response
+    {
+        $this->cartService->destroyCart();
+        return $this->redirectToRoute('app_home');
+    }
 }

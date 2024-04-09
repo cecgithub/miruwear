@@ -17,7 +17,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class ColorController extends AbstractController
 {
     #[Route('/', name: 'app_color')] // insert, ajoute la couleur
-    #[Route('/color/{id}', name: 'app_color_update')] // update, on modifie la couleur par son id
+    #[Route('/{id}', name: 'app_color_update')] // update, on modifie la couleur par son id
     public function index(ColorRepository $repository, EntityManagerInterface $manager, Request $request, int $id=null): Response
     {
         // le repository sert à faire un SELECT 

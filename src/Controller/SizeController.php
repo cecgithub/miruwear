@@ -16,52 +16,39 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/admin/size')] // on ajoute une route principale pour garantir l'accès à l'utilisateur
 class SizeController extends AbstractController
 {
-    #[Route('/', name: 'app_size')]
-    #[Route('/size/{id}', name: 'app_size_update')]
-    public function index(SizeRepository $repository, EntityManagerInterface $manager, Request $request, int $id=null): Response
+    #[Route('/list', name: 'app_size_list')]
+    #[Route('/list/update/{id}', name: 'app_size_update')]
+    public function sizes(Size $size = null, Request $request, SizeRepository $sizeRepository, EntityManagerInterface $manager): Response
     {
-        if ($id) {
-            $size = $repository->find($id); // on cherche la couleur correspondante à l'id dans l'url
-        } else {
-            $size = new Size(); // ici, on appelle l'Entity afin d'insérer une couleur dans la base de donnée
+        if ($size === null) {
+            $size = new Size();
         }
 
-        $sizes = $repository->findAll();
-
         $form = $this->createForm(SizeType::class, $size);
-
         $form->handleRequest($request);
 
-
-        if ($form->isSubmitted() && $form->isValid()){
-
+        if ($form->isSubmitted() && $form->isValid()) {
             $size = $form->getData();
-
             $manager->persist($size);
 
             $manager->flush();
 
-            return $this->redirectToRoute('app_size');
+            return $this->redirectToRoute('app_size_list');
         }
 
         return $this->render('size/index.html.twig', [
-            'controller_name' => 'SizeController',
+            'sizes' => $sizeRepository->findAll(),
             'form' => $form->createView(),
-            'sizes' => $sizes
         ]);
     }
 
-    #[Route('/size/delete/{id}', name: 'app_size_delete')]
-    public function delete(int $id, SizeRepository $repository, EntityManagerInterface $manager):Response
+    #[Route('/delete/{id}', name: 'app_size_delete')]
+    public function delete(int $id, SizeRepository $repository, EntityManagerInterface $manager): Response
     {
-
         $size = $repository->find($id);
-
         $manager->remove($size);
+        $manager->flush();
 
-        $manager ->flush();
-  
-    
-        return $this->redirectToRoute('app_size'); // Une fois la couleur supprimée, on redirige l'utilisateur vers la page app_color 
+        return $this->redirectToRoute('app_size_list'); // Une fois la couleur supprimée, on redirige l'utilisateur vers la page app_color 
     }
 }

@@ -142,18 +142,6 @@ class Product
         return $this;
     }
 
-    // public function getModel(): ?Model
-    // {
-    //     return $this->model;
-    // }
-
-    // public function setModel(?Model $model): static
-    // {
-    //     $this->model = $model;
-
-    //     return $this;
-    // }
-
     /**
      * @return Collection<int, Media>
      */
@@ -210,8 +198,6 @@ class Product
 
         return $this;
     }
-
-
 
     /**
      * Set the value of media

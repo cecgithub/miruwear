@@ -45,7 +45,7 @@ class CartService
         // Initialize an empty array to hold the product details
         $cartWithData = [];
         $total = 0;
-
+        
         // For each product in the cart, get the product details
         foreach ($cart as $id => $quantity) {
             // Find the product in the database
@@ -81,5 +81,10 @@ class CartService
     public function getCountCart()
     {
         return array_sum($this->getSession()->get('cart', []));
+    }
+
+    public function destroyCart()
+    {
+        $this->getSession()->remove('cart');
     }
 }
