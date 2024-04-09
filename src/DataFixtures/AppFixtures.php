@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Category;
 use App\Entity\Color;
+use App\Entity\Media;
 use App\Entity\Product;
 use App\Entity\Size;
 use App\Entity\User;
@@ -24,6 +25,8 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Faker\Factory::create();
+
+        $images =  ['staykawaii-animal-kawaii.png', 'staykawaii-neko-kawaii.png', 'streetwear-art-graphique.png', 'streetwear-graffiti.png'];
 
         // load sizes
         $sizes = ['XS', 'S', 'M', 'L', 'Xl'];
@@ -58,6 +61,7 @@ class AppFixtures extends Fixture
             $manager->persist($category);
         } 
 
+        $productsObj = [];
         for ($i = 0; $i < 15; $i++) {
             $product = new Product();
             $product->setTitle($faker->word);
@@ -68,7 +72,18 @@ class AppFixtures extends Fixture
             $product->setSize($faker->randomElement($sizesObj));
             $product->setColor($faker->randomElement($colorsObj));
 
+            $productsObj[] = $product;
+
             $manager->persist($product);
+        }
+
+        // create 15 medias
+        foreach($productsObj as $product) {
+            $media = new Media();
+            $media->setProduct($product);
+            $media->setSrc($faker->randomElement($images));
+
+            $manager->persist($media);
         }
 
         // create user Admin
