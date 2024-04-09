@@ -40,7 +40,7 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private ?Color $color = null;
 
-    #[ORM\OneToMany(targetEntity: Media::class, mappedBy: 'product', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Media::class, mappedBy: 'product', orphanRemoval: true, cascade: ["persist"])]
     private Collection $media;
 
     #[ORM\ManyToMany(targetEntity: Purchase::class, mappedBy: 'product')]
@@ -142,6 +142,17 @@ class Product
         return $this;
     }
 
+    // public function getModel(): ?Model
+    // {
+    //     return $this->model;
+    // }
+
+    // public function setModel(?Model $model): static
+    // {
+    //     $this->model = $model;
+
+    //     return $this;
+    // }
 
     /**
      * @return Collection<int, Media>
@@ -200,4 +211,17 @@ class Product
         return $this;
     }
 
+
+
+    /**
+     * Set the value of media
+     *
+     * @param Collection $media
+     *
+     * @return self
+     */
+    public function setMedia(Collection $media): self {
+        $this->media = $media;
+        return $this;
+    }
 }

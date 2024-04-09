@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'backoffice.html.twig' %}
 
 {% block title %}Product index{% endblock %}
 
@@ -25,11 +25,12 @@
                 <td>{{ product.description }}</td>
                 <td>{{ product.quantity }}</td>
                 <td>
-                    <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+                    <a href="{{ path('app_product_show', {'id': product.id}) }}">Voir</a>
+                    <a href="{{ path('app_product_edit', {'id': product.id}) }}">Modifier</a>
+                    <a href="{{ path('app_product_delete', {'id': product.id}) }}">Supprimer</a>
                 </td>
             </tr>
-
+    {% endfor %}
         </tbody>
     </table>
 

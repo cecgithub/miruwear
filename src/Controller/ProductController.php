@@ -13,11 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[IsGranted('ROLE_ADMIN')] 
-#[Route('/admin/product')]
+#[IsGranted('ROLE_ADMIN')]
+#[Route('/admin')]
 class ProductController extends AbstractController
 {
-    #[Route('/admin/product', name: 'app_product_index', methods: ['GET'])]
+    #[Route('/product', name: 'app_product_index', methods: ['GET'])]
     public function index(ProductRepository $productRepository): Response
     {
         return $this->render('product/index.html.twig', [
@@ -29,17 +29,26 @@ class ProductController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $product = new Product();
+        $media = new Media();
         //$media = new Media();
         $form = $this->createForm(ProductType::class, $product);
+        // dd($form);
         $form->handleRequest($request);
 
-        //dd($media);
-
         if ($form->isSubmitted() && $form->isValid()) {
+            $product = $form->getData();
+            $file = $form->get('media')->getData();
+            $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.' . $file->guessExtension();
+
+            $media->setSrc($fileName);
+            // dd(pathinfo($media->getClientOriginalName(), PATHINFO_FILENAME));
+            $product->addMedia($media);
+
+            //$product->setMedia($form->get('media')->getData());
             //$media->setSrc($product->getMedia());
 
-           //$product->addMedia($media);
-           // dd($product);
+            //$product->addMedia($media);
+            // dd($product);
             $entityManager->persist($product);
             //$entityManager->persist($media);
             $entityManager->flush();
@@ -83,7 +92,7 @@ class ProductController extends AbstractController
     #[Route('/{id}', name: 'app_product_delete', methods: ['POST'])]
     public function delete(Request $request, Product $product, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
             $entityManager->remove($product);
             $entityManager->flush();
         }

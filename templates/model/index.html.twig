@@ -1,16 +1,17 @@
 {% extends 'backoffice.html.twig' %}
 
-{% block title %}Model index{% endblock %}
+{% block title %}Index des modèles{% endblock %}
 
 {% block body %}
-    <h1>Model index</h1>
+<div class="container mt-4">
+    <h1>Modèles</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
+                <th>Nom</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -19,17 +20,18 @@
                 <td>{{ model.id }}</td>
                 <td>{{ model.name }}</td>
                 <td>
-                    <a href="{{ path('app_model_show', {'id': model.id}) }}">show</a>
-                    <a href="{{ path('app_model_edit', {'id': model.id}) }}">edit</a>
+                    <a href="{{ path('app_model_show', {'id': model.id}) }}">Voir</a>
+                    <a href="{{ path('app_model_edit', {'id': model.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_model_new') }}">Create new</a>
+    <a href="{{ path('app_model_new') }}">Créer un nouveau</a>
+</div>
 {% endblock %}

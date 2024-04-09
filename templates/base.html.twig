@@ -46,6 +46,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_contact')}}" style="color: white;">Contact</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_cart_show')}}" style="color: white;">Panier
+                        <span class="badge text-bg-secondary">{{cart_service.getCountCart()}}</span>
+                    </a>
+                </li>
                 {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_backoffice')}}" style="color: white;">Backoffice</a>

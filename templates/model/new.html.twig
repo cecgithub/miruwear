@@ -1,11 +1,17 @@
 {% extends 'backoffice.html.twig' %}
 
-{% block title %}New Model{% endblock %}
+{% block title %}Nouveau modèle{% endblock %}
 
 {% block body %}
+<div class="container mt-4">
     <h1>Créer un nouveau modèle</h1>
 
-    {{ include('model/_form.html.twig') }}
+    <table class="table">
+        <tr>
+            <td>{{ include('model/_form.html.twig') }}</td>
+        </tr>
+    </table>
 
-    <a href="{{ path('app_model_index') }}">back to list</a>
+    <a href="{{ path('app_model_index') }}">Retour à la liste</a>
+</div>
 {% endblock %}

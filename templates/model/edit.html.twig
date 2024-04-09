@@ -1,13 +1,26 @@
-{% extends 'base.html.twig' %}
+{% extends 'backoffice.html.twig' %}
 
-{% block title %}Edit Model{% endblock %}
+{% block title %}Modifier le modèle{% endblock %}
 
 {% block body %}
-    <h1>Edit Model</h1>
+<div class="container mt-4">
+    <h1>Modifier le modèle</h1>
 
-    {{ include('model/_form.html.twig', {'button_label': 'Update'}) }}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ model.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ include('model/_form.html.twig', {'button_label': 'Mettre à jour'}) }}</td>
+            </tr>
+        </tbody>
+    </table>
 
-    <a href="{{ path('app_model_index') }}">back to list</a>
+    <a href="{{ path('app_model_index') }}">Retour à la liste</a>
 
     {{ include('model/_delete_form.html.twig') }}
+</div>
 {% endblock %}

@@ -10,11 +10,17 @@
 
         {% for product in products %}
 <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="{{product.title}}">
+        {% for media in product.media %}
+        <pre>
+                {# {{ dump(asset('img/' ~ media.src)) }} #}
+        </pre>
+                
+   <img src="{{ asset('img/' ~ media.src) }}" class="card-img-top" alt="{{product.title}}">
+        {% endfor %}
   <div class="card-body">
     <h5 class="card-title">{{product.title}}</h5>
     <h5 class="card-title">{{product.price}}€</h5>
-    <a href="#" class="btn btn-dark"><i class="fa-solid fa-cart-plus"></i> Mettre dans le panier</a>
+    <a href="{{path('app_cart_add', { id : product.id })}}" class="btn btn-dark"><i class="fa-solid fa-cart-plus"></i> Mettre dans le panier</a>
     <a href="{{ path('product_display', {'id': product.id}) }}" class="btn btn-light">Voir</a>
   </div>
 </div>
