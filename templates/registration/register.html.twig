@@ -3,24 +3,35 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1 class="mt-5">Inscription</h1>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="contact d-flex justify-content-start flex-column align-items-start"> 
+                    <h1 class="mb-4">Inscription</h1>
 
-        {{ form_errors(registrationForm) }}
+                    {{ form_errors(registrationForm) }}
 
-        {{ form_start(registrationForm) }}
-            <div class="mb-3">
-                {{ form_row(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_start(registrationForm) }}
+                        <div class="mb-3">
+                            {{ form_row(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(registrationForm.plainPassword, {'label': 'Mot de passe', 'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="form-check mb-3">
+                            {{ form_row(registrationForm.agreeTerms, {'label_attr': {'class': 'form-check-label'}, 'attr': {'class': 'form-check-input'}}) }}
+                            <label class="form-check-label" for="{{ registrationForm.agreeTerms.vars.id }}"></label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-dark">S'inscrire</button>
+                    {{ form_end(registrationForm) }}
+                </div>
             </div>
-            <div class="mb-3">
-                {{ form_row(registrationForm.plainPassword, {'label': 'Mot de passe', 'attr': {'class': 'form-control'}}) }}
+            <div class="col-md-6">
+                <div class="text-center">
+                    <!-- Vos éléments ici -->
+                </div>
             </div>
-            <div class="form-check mb-3">
-                {{ form_row(registrationForm.agreeTerms, {'label_attr': {'class': 'form-check-label'}, 'attr': {'class': 'form-check-input'}}) }}
-                <label class="form-check-label" for="{{ registrationForm.agreeTerms.vars.id }}"></label>
-            </div>
-
-            <button type="submit" class="btn btn-dark">S'inscrire</button>
-        {{ form_end(registrationForm) }}
+        </div>
     </div>
 {% endblock %}

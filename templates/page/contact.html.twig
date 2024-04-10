@@ -3,9 +3,29 @@
 {% block title %}Page de contact{% endblock %}
 
 {% block body %}
-
-    <div class="contact">
-    <h1>Formulaire de contact </h1>
-
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="contact d-flex justify-content-start flex-column align-items-start"> 
+                    <h1 class="mb-4">Contact</h1>
+                    <form action="https://formspree.io/f/xqkrglyy" method="POST" class="w-100">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Votre Email :</label>
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="exemple@email.com">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Votre Message :</label>
+                            <textarea class="form-control" id="message" name="message" rows="3" placeholder="Entrez votre message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-dark">Envoyer</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="text-center">
+                    <!-- Vos éléments ici -->
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

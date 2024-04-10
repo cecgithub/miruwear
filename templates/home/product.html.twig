@@ -4,31 +4,56 @@
 
 {% block body %}
 
-
-<div class="container">
-    <h1> Collections</h1>
-
-        {% for product in products %}
-<div class="card" style="width: 18rem;">
-        {% for media in product.media %}
-        <pre>
-                {# {{ dump(asset('img/' ~ media.src)) }} #}
-        </pre>
-                
-   <img src="{{ asset('img/' ~ media.src) }}" class="card-img-top" alt="{{product.title}}">
-        {% endfor %}
-  <div class="card-body">
-    <h5 class="card-title">{{product.title}}</h5>
-    <h5 class="card-title">{{product.price}}€</h5>
-    <a href="{{path('app_cart_add', { id : product.id })}}" class="btn btn-dark"><i class="fa-solid fa-cart-plus"></i> Mettre dans le panier</a>
-    <a href="{{ path('product_display', {'id': product.id}) }}" class="btn btn-light">Voir</a>
-  </div>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Sidebar pour le filtre -->
+            <div class="card">
+                <div class="card-body">
+                    <!-- Votre filtre ici -->
+                    <h5 class="card-title">Filtre</h5>
+                    <!-- Exemple de filtres -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="checkbox1">
+                        <label class="form-check-label" for="checkbox1">
+                            Option 1
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="checkbox2">
+                        <label class="form-check-label" for="checkbox2">
+                            Option 2
+                        </label>
+                    </div>
+                    <!-- Ajoutez d'autres filtres si nécessaire -->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <!-- Contenu principal -->
+            <h1>Collections</h1>
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            {% for media in product.media %}
+                                <img src="{{ asset('img/' ~ media.src) }}" class="card-img-top" alt="{{ product.title }}">
+                            {% endfor %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product.title }}</h5>
+                                <h5 class="card-title">{{ product.category.title }}</h5>
+                                <h5 class="card-title">{{ product.price }}€</h5>
+                                <a href="{{ path('app_cart_add', { id : product.id }) }}" class="btn btn-dark"><i class="fa-solid fa-cart-plus"></i> Mettre dans le panier</a>
+                                <a href="{{ path('product_display', {'id': product.id}) }}" class="btn btn-light">Voir</a>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <p class="fs-2">Aucune collection pour l'instant</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
 
-        {% else %}
-                <p class='fs-2'>Aucune collection pour l'instant</p>
-
-        {% endfor %}
-
-</div>
 {% endblock %}

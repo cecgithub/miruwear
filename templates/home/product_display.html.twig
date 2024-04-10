@@ -4,22 +4,38 @@
 
 {% block body %}
 
-<div class="container">
-    <h1>{{ product.title }}! ✅</h1>
-
-    <div class="d-flex justify-content-around align-items-center">
-        {% for media in product.media %}
-            <div class="product-image-container">
-                <img src="{{ asset('img/' ~ media.src) }}" class="product-image" alt="{{ product.title }}" width="200">
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6">
+            <h1>{{ product.title }}</h1>
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% for media in product.media %}
+                    <div class="carousel-item {% if loop.first %}active{% endif %}">
+                        <img src="{{ asset('img/' ~ media.src) }}" class="d-block w-100" alt="{{ product.title }}">
+                    </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-        {% endfor %}
-
-        <div>
-            <h2>{{ product.title }}</h2>
-            <h4>{{ product.description }}</h4>
-            <p>{{ product.color.name }}</p>
-            <p>{{ product.size.name }}</p>
-            <h4 class="text-end text-info">{{ product.price }}€</h4>
+        </div>
+        <div class="col-lg-6">
+            <div>
+                <h2>{{ product.title }}</h2>
+                <h4>{{ product.description }}</h4>
+                <p>{{ product.category.title }}</p>
+                <p>{{ product.color.name }}</p>
+                <p>{{ product.size.name }}</p>
+                <h4 class="text-info">{{ product.price }}€</h4>
+                <a href="{{ path('app_cart_add', { id : product.id }) }}" class="btn btn-dark"><i class="fa-solid fa-cart-plus"></i> Mettre dans le panier</a>
+            </div>
         </div>
     </div>
 </div>

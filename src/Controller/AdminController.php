@@ -16,6 +16,8 @@ class AdminController extends AbstractController
         ]);
     }
 
+    // page de gestion produit, taille, couleur, catégorie coté administrateur
+
     #[Route('/backoffice', name: 'app_backoffice')]
     public function backoffice(): Response
     {
